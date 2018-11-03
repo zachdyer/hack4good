@@ -128,7 +128,8 @@ class Login extends Component {
         let create = <CreateAccount />;
         let forgot = null;
         let login = (
-            <div className="Login">
+            <div className="container Login">
+                <img className="mb-4" src="logo.png" width="100%"/>
                 <form 
                 onSubmit={this.handleSubmit}
                 className="form-signin"
@@ -158,7 +159,7 @@ class Login extends Component {
                     </div>
                     <div>
                         <button 
-                        className="form-control"
+                        className="form-control btn-primary mt-5"
                         disabled={!this.validateForm()}
                         type="submit"
                         >
