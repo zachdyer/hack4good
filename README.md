@@ -10,7 +10,7 @@ A potential app created during the Springfield Hack4Good Hackathon over the week
 
 Dramatic Roosters:
 
-- Zach Dryer (zachdryer)
+- Zach Dyer (zachdyer)
 - Colten Johnson (colten120)
 - Ben High (explodingkittn)
 - Elliott Campbell (GnatNamedAsh)
