@@ -15,7 +15,7 @@ public class Application {
     private String lname;
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "uid")
+    @JoinColumn(name = "user")
     private User user;
 
     @Column(columnDefinition="VARCHAR(256)")

@@ -64,6 +64,9 @@ public class User {
     @OneToMany()
     private List<Login> logins = new ArrayList<Login>();
 
+    @OneToMany()
+    private List<Session> sessions = new ArrayList<Session>();
+
     public Session getSession() {
         return session;
     }
@@ -184,7 +187,21 @@ public class User {
         this.date_created = date_created;
     }
 
+    public List<Login> getLogins() {
+        return logins;
+    }
 
+    public void setLogins(List<Login> logins) {
+        this.logins = logins;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
 
     public enum Gender {
         MALE, FEMALE, NONBINARY;

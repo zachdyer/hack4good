@@ -12,12 +12,12 @@ public class Session{
     private Integer sid;
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "uid")
+    @JoinColumn(name = "pin")
     private User pin;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "uid")
-    private User angel;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "angels")
+    private User angels;
 
     @Column(columnDefinition="ENUM")
     private Session_Type session_type;
@@ -50,12 +50,12 @@ public class Session{
         this.pin = pin;
     }
 
-    public User getAngel() {
-        return angel;
+    public User getAngels() {
+        return angels;
     }
 
-    public void setAngel(User angel) {
-        this.angel = angel;
+    public void setAngels(User angels) {
+        this.angels = angels;
     }
 
     public Session_Type getSession_type() {
