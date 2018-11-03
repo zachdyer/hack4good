@@ -1,5 +1,7 @@
 package com.borrowmyangel.hack4good.controllers;
 
+import com.borrowmyangel.hack4good.domain.Login;
+import com.borrowmyangel.hack4good.domain.User;
 import com.borrowmyangel.hack4good.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,4 +45,23 @@ public class SessionController {
         String token = sessionService.login(Integer.parseInt(request.getParameter("identifier")), request.getParameter("password"));
         return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
+
+	@RequestMapping(value="/testLogin", method = RequestMethod.GET)
+	@ResponseBody
+	public Login testLogin(HttpServletRequest request, Model model) {
+		return sessionService.testLogin();
+	}
+
+	@RequestMapping(value="/testMultipleLogin", method = RequestMethod.GET)
+	@ResponseBody
+	public User testMultipleLogin(HttpServletRequest request, Model model) {
+		return sessionService.testMultipleLogin();
+	}
+
+	@RequestMapping(value="/testMultipleSessions", method = RequestMethod.GET)
+	@ResponseBody
+	public User testMultipleSessions(HttpServletRequest request, Model model) {
+		return sessionService.testMultipleSessions();
+	}
+
 }

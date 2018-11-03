@@ -1,5 +1,7 @@
 package com.borrowmyangel.hack4good.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -13,10 +15,12 @@ public class Session{
 
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "pin")
+    @JsonIgnore
     private User pin;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "angels")
+    @JsonIgnore
     private User angels;
 
     @Column(columnDefinition="ENUM")
@@ -99,10 +103,10 @@ public class Session{
     }
 
     public enum Session_Type {
-        Talk, Text;
+        TALK, TEXT;
     }
 
     public enum Status {
-        Waiting, Failed, Cancelled, Finished, In_Progress;
+        WAITING, FAILED, CANCELLED, FINISHED, IN_PROGRESS;
     }
 }

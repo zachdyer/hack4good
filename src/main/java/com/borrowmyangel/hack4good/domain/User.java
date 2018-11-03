@@ -1,5 +1,7 @@
 package com.borrowmyangel.hack4good.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -56,14 +58,30 @@ public class User {
     @OneToOne(fetch=FetchType.LAZY, mappedBy = "user")
     private Application application;
 
-    /*@OneToMany()
+    @OneToMany(fetch=FetchType.LAZY)
     private List<Login> logins = new ArrayList<Login>();
 
-    @OneToMany()
+    @OneToMany(fetch=FetchType.LAZY)
     private List<Session> sessions = new ArrayList<Session>();
-*/
+
     public Application getApplication() {
         return application;
+    }
+
+    public List<Login> getLogins() {
+        return logins;
+    }
+
+    public void setLogins(List<Login> logins) {
+        this.logins = logins;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 
     public void setApplication(Application application) {

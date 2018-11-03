@@ -1,7 +1,10 @@
 package com.borrowmyangel.hack4good.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Logins")
@@ -13,10 +16,11 @@ public class Login {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
+    @JsonIgnore
     private User uid;
 
-    @Column(columnDefinition="DATETIME")
-    private Date date_created;
+    @Column(columnDefinition="TIMESTAMP")
+    private Timestamp date_created;
 
     @Column(columnDefinition="VARCHAR(128)")
     private String token;
@@ -40,11 +44,11 @@ public class Login {
         this.uid = uid;
     }
 
-    public Date getDate_created() {
+    public Timestamp getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(Timestamp date_created) {
         this.date_created = date_created;
     }
 
