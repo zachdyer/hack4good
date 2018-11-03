@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SessionService{
+public class SessionService {
 
     @Autowired
     LoginRepo loginRepo;
@@ -14,12 +14,22 @@ public class SessionService{
     @Autowired
     SessionRepo sessionRepo;
 
-    public void startSession(Integer id) { return sessionRepo.startSession(id); }
+    public void startSession(Integer id) {
+        //sessionRepo.startSession(id);
+    }
 
-    public String checkSessionById(Integer id) { return sessionRepo.checkSessionById(id); }
+    public String checkSessionById(Integer id) {
+        return sessionRepo.findById(id).get().getStatus().toString();
+    }
 
-    public Boolean isLoggedIn(Integer id) { return sessionRepo.isLoggedIn(id); }
+    public Boolean isLoggedIn(Integer id) {
+        //return sessionRepo.isLoggedIn(id);
+        return null;
+    }
 
-    public String login(Integer id, String pass) { return sessionRepo.login(id, pass); }
+    public String login(Integer id, String pass) {
+        //return sessionRepo.login(id, pass);
+        return null;
+    }
 
 }

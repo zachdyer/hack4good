@@ -96,11 +96,11 @@ public class Session{
         this.date_started = date_started;
     }
 
-    enum Session_Type {
+    public enum Session_Type {
         Talk, Text;
     }
 
-    enum Status {
+    public enum Status {
         Waiting, Failed, Cancelled, Finished, In_Progress;
     }
 }
