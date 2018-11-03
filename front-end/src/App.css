@@ -63,5 +63,5 @@ body {
 }
 
 @media only screen and (min-width: 400px) {
-    .home, .Login { width: 400px }
+    .home, .Login, .register { width: 400px }
 }
