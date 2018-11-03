@@ -23,52 +23,72 @@ public class SessionController {
     @Autowired
     SessionService sessionService;
 
+	/**
+	 *
+	 * @param request
+	 * @return
+	 */
     @RequestMapping(value="/session/startSession", method = RequestMethod.POST)
     @ResponseBody
-    public void startSession(HttpServletRequest request, Model model) {
+    public void startSession(HttpServletRequest request) {
         sessionService.startSession(Integer.parseInt(request.getParameter("id")));
     }
 
+	/**
+	 *
+	 * @param request
+	 * @return Session status
+	 */
     @RequestMapping(value="/session/checkSession", method = RequestMethod.GET)
     @ResponseBody
-    public String getSession(HttpServletRequest request, Model model) {
+    public String getSession(HttpServletRequest request) {
         return sessionService.checkSessionById(Integer.parseInt(request.getParameter("id")));
     }
 
+	/**
+	 *
+	 * @param request
+	 * @return True or False
+	 */
     @RequestMapping(value="/checkLogin", method = RequestMethod.POST)
     @ResponseBody
-    public Boolean checkLogin(HttpServletRequest request, Model model) {
+    public Boolean checkLogin(HttpServletRequest request) {
         return sessionService.isLoggedIn(request.getParameter("token"));
     }
 
+	/**
+	 *
+	 * @param request
+	 * @return Result string and token
+	 */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     @ResponseBody
-    public ArrayList<String> login(HttpServletRequest request, Model model) {
+    public ArrayList<String> login(HttpServletRequest request) {
         String token = sessionService.login(request.getParameter("email"), request.getParameter("password"));
         return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
 
 	@RequestMapping(value="/testLogin", method = RequestMethod.GET)
 	@ResponseBody
-	public Login testLogin(HttpServletRequest request, Model model) {
+	public Login testLogin(HttpServletRequest request) {
 		return sessionService.testLogin();
 	}
 
 	@RequestMapping(value="/testMultipleLogin", method = RequestMethod.GET)
 	@ResponseBody
-	public User testMultipleLogin(HttpServletRequest request, Model model) {
+	public User testMultipleLogin(HttpServletRequest request) {
 		return sessionService.testMultipleLogin();
 	}
 
 	@RequestMapping(value="/testMultipleSessions", method = RequestMethod.GET)
 	@ResponseBody
-	public User testMultipleSessions(HttpServletRequest request, Model model) {
+	public User testMultipleSessions(HttpServletRequest request) {
 		return sessionService.testMultipleSessions();
 	}
 
 	@RequestMapping(value="/testLoginWithRandomToken", method = RequestMethod.GET)
 	@ResponseBody
-	public String testLoginWithRandomToken(HttpServletRequest request, Model model) {
+	public String testLoginWithRandomToken(HttpServletRequest request) {
 		return sessionService.login("Emaaaaadil","sudnhvcuewhvcer");
 	}
 

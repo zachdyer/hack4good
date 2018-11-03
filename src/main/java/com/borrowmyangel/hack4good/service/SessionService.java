@@ -33,14 +33,30 @@ public class SessionService {
     @Autowired
 	UserRepo userRepo;
 
+
+	/**
+	 *
+	 * @param id
+	 * @return
+	 */
     public void startSession(Integer id) {
         //sessionRepo.startSession(id);
     }
 
+	/**
+	 *
+	 * @param id
+	 * @return Status of session
+	 */
     public String checkSessionById(Integer id) {
         return sessionRepo.findById(id).get().getStatus().toString();
     }
 
+	/**
+	 *
+	 * @param token
+	 * @return True or false
+	 */
     public Boolean isLoggedIn(String token) {
     	List<Login> logs = (List)loginRepo.findAll();
 	    for (Login log : logs) {
@@ -51,6 +67,11 @@ public class SessionService {
         return false;
     }
 
+	/**
+	 *
+	 * @param email, pass
+	 * @return token assigned to user for authentication
+	 */
     public String login(String email, String pass) {
 
     	if(!isAutenticated(email, pass)){
@@ -79,6 +100,11 @@ public class SessionService {
         return token;
     }
 
+	/**
+	 *
+	 * @param email, pass
+	 * @return True or False
+	 */
     private Boolean isAutenticated (String email, String pass){
     	List<User> users = (List)userRepo.findAll();
 
@@ -91,6 +117,11 @@ public class SessionService {
     	return false;
     }
 
+	/**
+	 *
+	 * @param
+	 * @return Cryptic token for authentication
+	 */
     public String createLargeString(){
 
     	String token = "";

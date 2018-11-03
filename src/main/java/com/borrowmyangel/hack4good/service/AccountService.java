@@ -26,19 +26,29 @@ public class AccountService {
 	/**
 	 *
 	 * @param user
-	 * @return
+	 * @return Register Response containing resulting code
 	 */
 	public RegisterResponse registerUser(User user) {
         userRepo.save(user);
         return new RegisterResponse(0);
     }
 
+	/**
+	 *
+	 * @param user, application
+	 * @return Register Response containing resulting code
+	 */
 	public RegisterResponse registerUserWithApplication(User user, Application application){
 		registerUser(user);
 		applicationRepo.save(application);
 		return new RegisterResponse(0);
 	}
 
+	/**
+	 *
+	 * @param id, status
+	 * @return
+	 */
     public void changeAngelStatus(Integer id, String status) {
         User curAngel = userRepo.findById(id).get();
 
