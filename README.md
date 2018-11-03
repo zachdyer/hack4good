@@ -3,6 +3,9 @@
 BorrowMyAngel Web Application
 Hack4Good app for non-profit charity.
 
+## Github Repository
+https://github.com/zachdyer/hack4good
+
 ## Google Drive
 
 To view the project specifications go to this link
@@ -14,7 +17,7 @@ A potential app created during the Springfield Hack4Good Hackathon over the week
 
 ## Team
 
-Dramatic Roosters:
+### Dramatic Roosters:
 
 - Zach Dyer (zachdyer)
 - Colten Johnson (colten120)
