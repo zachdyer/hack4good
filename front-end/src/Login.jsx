@@ -137,7 +137,7 @@ class Login extends Component {
                         <input 
                         autoFocus
                         className="form-control"
-                        type="text"
+                        type="email"
                         id="identifier"
                         placeholder="Email or username"
                         value={this.state.identifier}

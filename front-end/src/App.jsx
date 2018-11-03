@@ -44,18 +44,15 @@ class Home extends Component {
 
   render() {
     let home = (<div>
-      <div>
-        <button onClick={this.handleSubmit} value={"immediate"}>
+      <img class="mb-4" src="logo.png" alt="" width="100%"/>
+      <div className="btn-group-vertical">
+        <button onClick={this.handleSubmit} value={"immediate"} className="btn btn-primary btn-lg">
           Get immediate help
         </button>
-      </div>
-      <div>
-        <button onClick={this.handleSubmit} value={"login"}>
+        <button onClick={this.handleSubmit} value={"login"} className="btn btn-primary btn-lg">
           login
         </button>
-      </div>
-      <div>
-        <button onClick={this.handleSubmit} value={"create"}>
+        <button onClick={this.handleSubmit} value={"create"} className="btn btn-primary btn-lg">
           Create an account
         </button>
       </div>
