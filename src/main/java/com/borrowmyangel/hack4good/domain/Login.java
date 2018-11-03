@@ -11,8 +11,9 @@ public class Login {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer lid;
 
-    @Column(columnDefinition="INTEGER")
-    private Integer uid;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uid")
+    private User uid;
 
     @Column(columnDefinition="DATETIME")
     private Date date_created;
@@ -21,7 +22,7 @@ public class Login {
     private String token;
 
     @Column(columnDefinition="BOOLEAN")
-    private Boolean lname;
+    private Boolean valid;
 
     public Integer getLid() {
         return lid;
@@ -31,11 +32,11 @@ public class Login {
         this.lid = lid;
     }
 
-    public Integer getUid() {
+    public User getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(User uid) {
         this.uid = uid;
     }
 
@@ -55,11 +56,11 @@ public class Login {
         this.token = token;
     }
 
-    public Boolean getLname() {
-        return lname;
+    public Boolean getValid() {
+        return valid;
     }
 
-    public void setLname(Boolean lname) {
-        this.lname = lname;
+    public void setValid (Boolean valid) {
+        this.valid = valid;
     }
 }
