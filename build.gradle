@@ -52,4 +52,7 @@ dependencies {
 
 	// Jackson Databind
 	compile("com.fasterxml.jackson.core:jackson-databind")
+
+	// MySQL connector
+	compile('mysql:mysql-connector-java')
 }

@@ -8,7 +8,8 @@ import java.sql.Timestamp;
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer uid;
 
     @Column(columnDefinition="VARCHAR(128)")
@@ -26,6 +27,7 @@ public class User {
     @Column(columnDefinition="INTEGER")
     private Integer age;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition="ENUM")
     private Gender gender;
 
@@ -38,9 +40,11 @@ public class User {
     @Column(columnDefinition="VARCHAR(128)")
     private String password_hash;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition="ENUM")
     private Account_Type account_type;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition="ENUM")
     private Angel_Status angel_status;
 
@@ -151,15 +155,15 @@ public class User {
         this.date_created = date_created;
     }
 
-    enum Gender {
-        MALE, FEMALE;
+    public enum Gender {
+        MALE, FEMALE, NONBINARY;
     }
 
-    enum Account_Type {
-        PERSON_IN_NEED, ANGEL, ALLY, ADMIN;
+    public enum Account_Type {
+        ANGEL, PERSON_IN_NEED, ALLY, ADMIN;
     }
 
-    enum Angel_Status {
-        AVAILABLE, UNAVAILABLE, DO_NOT_DISTURB, PENDING;
+    public enum Angel_Status {
+        AVAILABLE, UNAVAILABLE, DND, PENDING;
     }
 }
