@@ -95,12 +95,12 @@ public class Session{
     public void setDate_started(Timestamp date_started) {
         this.date_started = date_started;
     }
-}
 
-enum Session_Type {
-    Talk, Text;
-}
+    enum Session_Type {
+        Talk, Text;
+    }
 
-enum Status {
-    Waiting, Failed, Cancelled, Finished, In_Progress;
+    enum Status {
+        Waiting, Failed, Cancelled, Finished, In_Progress;
+    }
 }

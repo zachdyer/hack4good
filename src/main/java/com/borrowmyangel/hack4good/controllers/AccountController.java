@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = {"/"})
 public class AccountController {
 
-    @RequestMapping("/register")
-    public void register(HttpServletRequest request, Model model) {
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public void register() {
 
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value="/login")
     public void login(HttpServletRequest request, Model model) {
+
+    }
+
+    @RequestMapping(value="/changeStatus", method = RequestMethod.POST)
+    public void changeStatus(HttpServletRequest request, Model model) {
 
     }
 }

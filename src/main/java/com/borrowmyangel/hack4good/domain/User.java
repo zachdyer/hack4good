@@ -150,16 +150,16 @@ public class User {
     public void setDate_created(Timestamp date_created) {
         this.date_created = date_created;
     }
-}
 
-enum Gender {
-    MALE, FEMALE;
-}
+    enum Gender {
+        MALE, FEMALE;
+    }
 
-enum Account_Type {
-    PERSON_IN_NEED, ANGEL, ALLY, ADMIN;
-}
+    enum Account_Type {
+        PERSON_IN_NEED, ANGEL, ALLY, ADMIN;
+    }
 
-enum Angel_Status {
-    AVAILABLE, UNAVAILABLE, DO_NOT_DISTURB, PENDING;
+    enum Angel_Status {
+        AVAILABLE, UNAVAILABLE, DO_NOT_DISTURB, PENDING;
+    }
 }
