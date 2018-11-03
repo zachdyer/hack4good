@@ -53,28 +53,15 @@ public class User {
     @Column(columnDefinition="TIMESTAMP")
     private Timestamp date_created;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "session")
-    private Session session;
-
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "application")
+    @OneToOne(fetch=FetchType.LAZY, mappedBy = "user")
     private Application application;
 
-    @OneToMany()
+    /*@OneToMany()
     private List<Login> logins = new ArrayList<Login>();
 
     @OneToMany()
     private List<Session> sessions = new ArrayList<Session>();
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
+*/
     public Application getApplication() {
         return application;
     }
@@ -187,7 +174,7 @@ public class User {
         this.date_created = date_created;
     }
 
-    public List<Login> getLogins() {
+/*    public List<Login> getLogins() {
         return logins;
     }
 
@@ -201,7 +188,7 @@ public class User {
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
-    }
+    }*/
 
     public enum Gender {
         MALE, FEMALE, NONBINARY;

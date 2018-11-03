@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class AccountController {
         }
 
         try{
-            accountService.registerUser(values);
+            accountService.registerUser(parameters);
             return "Successfully registered";
         }catch(Exception e){
             return "Failed to Register";

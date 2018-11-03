@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AccountService {
@@ -25,8 +26,9 @@ public class AccountService {
     @Autowired
     ApplicationRepo applicationRepo;
 
-    public void registerUser(List<String> values) {
+    public void registerUser(Map<String,String[]> values) {
         User newUser = new User();
+        //newUser.setAge(values.get("age"));
         userRepo.save(newUser); }
 
     public void changeAngelStatus(Integer id, String status) {
@@ -61,8 +63,10 @@ public class AccountService {
         app.setReason("NA");
         app.setVolunteering("A TON");
         app.setRefs("Just the one");
-        app.setPermit_bgc(Boolean.TRUE);
+        app.setPermit_background_check(Boolean.TRUE);
         app.setUser(user);
+
+        applicationRepo.save(app);
 
         return app.getUser();
     }

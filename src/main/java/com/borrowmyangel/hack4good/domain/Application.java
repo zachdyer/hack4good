@@ -1,5 +1,7 @@
 package com.borrowmyangel.hack4good.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -8,14 +10,15 @@ import java.sql.Timestamp;
 public class Application {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer aid;
 
     @Column(columnDefinition="VARCHAR(128)")
     private String lname;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "uid")
+    @JsonIgnore
     private User user;
 
     @Column(columnDefinition="VARCHAR(256)")
@@ -37,7 +40,7 @@ public class Application {
     private String refs;
 
     @Column(columnDefinition="BOOLEAN")
-    private Boolean permit_bgc;
+    private Boolean permit_background_check;
 
     @Column(columnDefinition="VARCHAR(1024)")
     private String criminal_history;
@@ -114,15 +117,15 @@ public class Application {
         this.refs = refs;
     }
 
-    public Boolean getPermit_bgc() {
-        return permit_bgc;
-    }
+	public Boolean getPermit_background_check() {
+		return permit_background_check;
+	}
 
-    public void setPermit_bgc(Boolean permit_bgc) {
-        this.permit_bgc = permit_bgc;
-    }
+	public void setPermit_background_check(Boolean permit_background_check) {
+		this.permit_background_check = permit_background_check;
+	}
 
-    public String getCriminal_history() {
+	public String getCriminal_history() {
         return criminal_history;
     }
 
