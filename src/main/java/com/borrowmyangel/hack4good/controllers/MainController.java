@@ -38,7 +38,6 @@ public class MainController {
 	@RequestMapping(value = "/test3")
 	@ResponseBody
 	public String test3(HttpServletResponse response) {
-		response.addHeader("Access-Control-Allow-Origin", "*");
 		return "test";
 	}
 }
