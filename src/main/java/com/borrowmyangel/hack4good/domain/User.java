@@ -2,6 +2,8 @@ package com.borrowmyangel.hack4good.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -50,6 +52,33 @@ public class User {
 
     @Column(columnDefinition="TIMESTAMP")
     private Timestamp date_created;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "session")
+    private Session session;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "application")
+    private Application application;
+
+    @OneToMany()
+    private List<Login> logins = new ArrayList<Login>();
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
 
     public Integer getUid() {
         return uid;
@@ -154,6 +183,8 @@ public class User {
     public void setDate_created(Timestamp date_created) {
         this.date_created = date_created;
     }
+
+
 
     public enum Gender {
         MALE, FEMALE, NONBINARY;

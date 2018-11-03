@@ -14,8 +14,9 @@ public class Application {
     @Column(columnDefinition="VARCHAR(128)")
     private String lname;
 
-    @Column(columnDefinition="INTEGER")
-    private Integer uid;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "uid")
+    private User user;
 
     @Column(columnDefinition="VARCHAR(256)")
     private String address;
@@ -36,10 +37,18 @@ public class Application {
     private String refs;
 
     @Column(columnDefinition="BOOLEAN")
-    private Boolean email;
+    private Boolean permit_bgc;
 
     @Column(columnDefinition="VARCHAR(1024)")
     private String criminal_history;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getAid() {
         return aid;
@@ -55,14 +64,6 @@ public class Application {
 
     public void setLname(String lname) {
         this.lname = lname;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
     }
 
     public String getAddress() {
@@ -113,12 +114,12 @@ public class Application {
         this.refs = refs;
     }
 
-    public Boolean getEmail() {
-        return email;
+    public Boolean getPermit_bgc() {
+        return permit_bgc;
     }
 
-    public void setEmail(Boolean email) {
-        this.email = email;
+    public void setPermit_bgc(Boolean permit_bgc) {
+        this.permit_bgc = permit_bgc;
     }
 
     public String getCriminal_history() {
@@ -128,4 +129,5 @@ public class Application {
     public void setCriminal_history(String criminal_history) {
         this.criminal_history = criminal_history;
     }
+
 }

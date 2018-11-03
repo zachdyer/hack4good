@@ -11,11 +11,13 @@ public class Session{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer sid;
 
-    @Column(columnDefinition="INTEGER")
-    private Integer pin;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "uid")
+    private User pin;
 
-    @Column(columnDefinition="INTEGER")
-    private Integer angel;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "uid")
+    private User angel;
 
     @Column(columnDefinition="ENUM")
     private Session_Type session_type;
@@ -40,19 +42,19 @@ public class Session{
         this.sid = sid;
     }
 
-    public Integer getPin() {
+    public User getPin() {
         return pin;
     }
 
-    public void setPin(Integer pin) {
+    public void setPin(User pin) {
         this.pin = pin;
     }
 
-    public Integer getAngel() {
+    public User getAngel() {
         return angel;
     }
 
-    public void setAngel(Integer angel) {
+    public void setAngel(User angel) {
         this.angel = angel;
     }
 
