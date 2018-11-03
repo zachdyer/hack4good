@@ -1,2 +1,24 @@
-# hack4good
-Hack4Good app for non-profit charity.
+# Hack4Good
+
+BorrowMyAngel Web Application
+
+## Description
+
+A potential app created during the Springfield Hack4Good Hackathon over the weekend of November 2, 2018 to November 4.
+
+## Team
+
+Dramatic Roosters:
+
+- Zach Dryer (zachdryer)
+- Colten Johnson (colten120)
+- Ben High (explodingkittn)
+- Elliott Campbell (GnatNamedAsh)
+
+## Tools
+
+Frameworks
+
+- Java MVC
+- React
+- Bootstrap
