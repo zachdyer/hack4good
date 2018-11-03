@@ -1,5 +1,6 @@
 package com.borrowmyangel.hack4good.controllers;
 
+import com.borrowmyangel.hack4good.domain.Application;
 import com.borrowmyangel.hack4good.domain.User;
 import com.borrowmyangel.hack4good.response.LoginStatus;
 import com.borrowmyangel.hack4good.response.RegisterResponse;
@@ -26,6 +27,12 @@ public class AccountController {
     public RegisterResponse register(User user, Model model) {
 	    return accountService.registerUser(user);
     }
+
+	@RequestMapping(value="/registerWithApplication", method = RequestMethod.POST)
+	@ResponseBody
+	public RegisterResponse registerWithApplication(User user, Application application) {
+		return accountService.registerUserWithApplication(user, application);
+	}
 
     @RequestMapping(value="/changeAngelStatus", method = RequestMethod.POST)
     public void changeAngelStatus(HttpServletRequest request, Model model) {

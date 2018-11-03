@@ -29,16 +29,15 @@ public class AccountService {
 	 * @return
 	 */
 	public RegisterResponse registerUser(User user) {
-    	user.setAccount_type(User.Account_Type.PERSON_IN_NEED);
-    	user.setState("MO");
-    	user.setCity("Springfields");
-    	user.setAge(20);
-    	// user.setGender(User.Gender.MALE);
-    	user.setPassword_hash("somehash");
-    	user.setAngel_status(User.Angel_Status.AVAILABLE);
         userRepo.save(user);
         return new RegisterResponse(0);
     }
+
+	public RegisterResponse registerUserWithApplication(User user, Application application){
+		registerUser(user);
+		applicationRepo.save(application);
+		return new RegisterResponse(0);
+	}
 
     public void changeAngelStatus(Integer id, String status) {
         User curAngel = userRepo.findById(id).get();
