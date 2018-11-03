@@ -24,8 +24,8 @@ public class MainController {
 
 	@RequestMapping(value = "/test")
 	@ResponseBody
-	public User test() {
-		return ((List<User>) dao.findAll()).get(0);
+	public List<User> test() {
+		return (List<User>) dao.findAll();
 	}
 
 	@RequestMapping(value = "/test2")

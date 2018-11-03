@@ -2,6 +2,7 @@ package com.borrowmyangel.hack4good.controllers;
 
 import com.borrowmyangel.hack4good.domain.User;
 import com.borrowmyangel.hack4good.response.LoginStatus;
+import com.borrowmyangel.hack4good.response.RegisterResponse;
 import com.borrowmyangel.hack4good.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,20 +23,8 @@ public class AccountController {
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
     @ResponseBody
-    public String register(HttpServletRequest request, Model model) {
-
-        Map<String,String[]> parameters = request.getParameterMap();
-        List<String> values = new ArrayList<>();
-        for(String key : parameters.keySet()){
-            values.add(key);
-        }
-
-        try{
-            accountService.registerUser(parameters);
-            return "Successfully registered";
-        }catch(Exception e){
-            return "Failed to Register";
-        }
+    public RegisterResponse register(User user, Model model) {
+	    return accountService.registerUser(user);
     }
 
     @RequestMapping(value="/changeAngelStatus", method = RequestMethod.POST)

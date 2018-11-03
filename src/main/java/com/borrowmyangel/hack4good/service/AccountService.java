@@ -6,6 +6,7 @@ import com.borrowmyangel.hack4good.dao.UserRepo;
 import com.borrowmyangel.hack4good.domain.Application;
 import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.User;
+import com.borrowmyangel.hack4good.response.RegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,17 @@ public class AccountService {
     @Autowired
     ApplicationRepo applicationRepo;
 
-    public void registerUser(Map<String,String[]> values) {
-        User newUser = new User();
-        //newUser.setAge(values.get("age"));
-        userRepo.save(newUser); }
+    public RegisterResponse registerUser(User user) {
+    	user.setAccount_type(User.Account_Type.PERSON_IN_NEED);
+    	user.setState("MO");
+    	user.setCity("Springfields");
+    	user.setAge(20);
+    	// user.setGender(User.Gender.MALE);
+    	user.setPassword_hash("somehash");
+    	user.setAngel_status(User.Angel_Status.AVAILABLE);
+        userRepo.save(user);
+        return new RegisterResponse(0);
+    }
 
     public void changeAngelStatus(Integer id, String status) {
         User curAngel = userRepo.findById(id).get();
