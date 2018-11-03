@@ -11,10 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class AccountService {
@@ -27,7 +23,12 @@ public class AccountService {
     @Autowired
     ApplicationRepo applicationRepo;
 
-    public RegisterResponse registerUser(User user) {
+	/**
+	 *
+	 * @param user
+	 * @return
+	 */
+	public RegisterResponse registerUser(User user) {
     	user.setAccount_type(User.Account_Type.PERSON_IN_NEED);
     	user.setState("MO");
     	user.setCity("Springfields");

@@ -10,18 +10,18 @@ import java.sql.Timestamp;
 public class Session{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer sid;
 
-    @OneToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "pin")
     @JsonIgnore
     private User pin;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "angels")
+    @JoinColumn(name = "angel")
     @JsonIgnore
-    private User angels;
+    private User angel;
 
     @Column(columnDefinition="ENUM")
     private Session_Type session_type;
@@ -54,12 +54,12 @@ public class Session{
         this.pin = pin;
     }
 
-    public User getAngels() {
-        return angels;
+    public User getAngel() {
+        return angel;
     }
 
-    public void setAngels(User angels) {
-        this.angels = angels;
+    public void setAngel(User angel) {
+        this.angel = angel;
     }
 
     public Session_Type getSession_type() {

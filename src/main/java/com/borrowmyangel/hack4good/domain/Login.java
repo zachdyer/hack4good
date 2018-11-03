@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class Login {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer lid;
 
     @ManyToOne(fetch = FetchType.LAZY)

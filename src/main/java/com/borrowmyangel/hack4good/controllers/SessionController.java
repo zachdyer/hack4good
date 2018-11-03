@@ -3,6 +3,7 @@ package com.borrowmyangel.hack4good.controllers;
 import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.User;
 import com.borrowmyangel.hack4good.service.SessionService;
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = {"/"})
 public class SessionController {
+
 
     @Autowired
     SessionService sessionService;
@@ -36,13 +38,13 @@ public class SessionController {
     @RequestMapping(value="/checkLogin", method = RequestMethod.POST)
     @ResponseBody
     public Boolean checkLogin(HttpServletRequest request, Model model) {
-        return sessionService.isLoggedIn(Integer.parseInt(request.getParameter("id")));
+        return sessionService.isLoggedIn(request.getParameter("token"));
     }
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     @ResponseBody
     public ArrayList<String> login(HttpServletRequest request, Model model) {
-        String token = sessionService.login(Integer.parseInt(request.getParameter("identifier")), request.getParameter("password"));
+        String token = sessionService.login(request.getParameter("email"), request.getParameter("password"));
         return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
 
@@ -62,6 +64,12 @@ public class SessionController {
 	@ResponseBody
 	public User testMultipleSessions(HttpServletRequest request, Model model) {
 		return sessionService.testMultipleSessions();
+	}
+
+	@RequestMapping(value="/testLoginWithRandomToken", method = RequestMethod.GET)
+	@ResponseBody
+	public String testLoginWithRandomToken(HttpServletRequest request, Model model) {
+		return sessionService.login("Emaaaaadil","sudnhvcuewhvcer");
 	}
 
 }

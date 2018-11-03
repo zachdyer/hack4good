@@ -58,11 +58,14 @@ public class User {
     @OneToOne(fetch=FetchType.LAZY, mappedBy = "user")
     private Application application;
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "uid")
     private List<Login> logins = new ArrayList<Login>();
 
-    @OneToMany(fetch=FetchType.LAZY)
-    private List<Session> sessions = new ArrayList<Session>();
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "pin")
+    private List<Session> sessionsInitiated = new ArrayList<Session>();
+
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "angel")
+    private List<Session> sessionsRecieved = new ArrayList<Session>();
 
     public Application getApplication() {
         return application;
@@ -76,12 +79,20 @@ public class User {
         this.logins = logins;
     }
 
-    public List<Session> getSessions() {
-        return sessions;
+    public List<Session> getSessionsInitiated() {
+        return sessionsInitiated;
     }
 
-    public void setSessions(List<Session> sessions) {
-        this.sessions = sessions;
+    public void setSessionsInitiated(List<Session> sessionsInitiated) {
+        this.sessionsInitiated = sessionsInitiated;
+    }
+
+    public List<Session> getSessionsRecieved() {
+        return sessionsRecieved;
+    }
+
+    public void setSessionsRecieved(List<Session> sessionsRecieved) {
+        this.sessionsRecieved = sessionsRecieved;
     }
 
     public void setApplication(Application application) {

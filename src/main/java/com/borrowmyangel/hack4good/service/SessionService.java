@@ -6,6 +6,7 @@ import com.borrowmyangel.hack4good.dao.UserRepo;
 import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.Session;
 import com.borrowmyangel.hack4good.domain.User;
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import static java.lang.Math.round;
 
 @Service
 public class SessionService {
@@ -37,14 +41,67 @@ public class SessionService {
         return sessionRepo.findById(id).get().getStatus().toString();
     }
 
-    public Boolean isLoggedIn(Integer id) {
-        //return sessionRepo.isLoggedIn(id);
-        return null;
+    public Boolean isLoggedIn(String token) {
+    	List<Login> logs = (List)loginRepo.findAll();
+	    for (Login log : logs) {
+		    if(log.getToken() == token){
+		    	return true;
+		    }
+	    }
+        return false;
     }
 
-    public String login(Integer id, String pass) {
-        //return sessionRepo.login(id, pass);
-        return null;
+    public String login(String email, String pass) {
+
+    	if(!isAutenticated(email, pass)){
+    		return "FAILED";
+	    }
+	    List<User> users = (List)userRepo.findAll();
+    	User user = new User();
+
+	    for(User u: users){
+		    if(u.getEmail().equals(email)){
+			    user = u;
+		    }
+	    }
+
+	    String token = createLargeString();
+
+	    Login login = new Login();
+
+	    login.setValid(Boolean.TRUE);
+	    login.setUid(user);
+	    login.setToken(token);
+	    login.setDate_created(Timestamp.from(Instant.now()));
+
+	    loginRepo.save(login);
+
+        return token;
+    }
+
+    private Boolean isAutenticated (String email, String pass){
+    	List<User> users = (List)userRepo.findAll();
+
+		for(User user: users){
+			if(user.getEmail().equals(email) && user.getPassword_hash().equals(pass)){
+				return true;
+			}
+		}
+
+    	return false;
+    }
+
+    public String createLargeString(){
+
+    	String token = "";
+
+    	for (int i = 0; i < 128; i++){
+    		int rand = (int)round((Math.random() * ((126 - 34) + 1)) + 34);
+
+			token += Character.toString((char)rand);
+	    }
+
+	    return token;
     }
 
     public Login testLogin(){
@@ -78,7 +135,7 @@ public class SessionService {
 		newSession2.setStatus(Session.Status.CANCELLED);
 		newSession2.setPin(user);
 
-		user.setSessions(new ArrayList<Session>() {{ add(newSession); add(newSession2); }});
+		user.setSessionsInitiated(new ArrayList<Session>() {{ add(newSession); add(newSession2); }});
 
 		return user;
 	}
