@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- Templates -->
+	<definition name="defaultLayout" template="/WEB-INF/layouts/defaultLayout.jsp">
+		<put-attribute name="title" value="Unnamed Page" />
+		<put-attribute name="applicationName" value="Application" />
+	</definition>
+
+	<!-- Error page -->
+	<definition name="error" extends="defaultLayout">
+		<put-attribute name="title" value="Error" />
+		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp" />
+	</definition>
+
+	<!-- Pages -->
+	<definition name="index" extends="defaultLayout">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+	</definition>
+</tiles-definitions>
