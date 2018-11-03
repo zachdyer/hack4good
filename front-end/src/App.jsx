@@ -16,6 +16,10 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  donation() {
+    window.open("https://4agc.com/donation_pages/c9252832-caf3-4cf1-99eb-7450c0dc4699?gift_id=3fbcc69f-54aa-4581-b01b-93106c58b131");
+  }
+
   // When you clickity-click, change the states
   // Each state is like the US states, finicky and slow
   // but it will render the right page on click. Ain't that neat.
@@ -43,9 +47,10 @@ class Home extends Component {
   }
 
   render() {
-    let home = (<div>
+    let home = (
+    <div>
       <div>
-        <button onClick={this.handleSubmit} value={"immediate"}>
+          <button onClick={this.handleSubmit} value={"immediate"}>
           Get immediate help
         </button>
       </div>
@@ -59,10 +64,16 @@ class Home extends Component {
           Create an account
         </button>
       </div>
-    </div>);
+      <div>
+        <button onClick={this.donation}>
+          Donate
+        </button>
+      </div>
+    </div>
+    );
 
     
-    if (this.state.login === true) {
+    if (this.state.login) {
       return <Login />;
     } else if (this.state.create) {
       return <CreateAccount />;

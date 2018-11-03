@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
 export default class CreateAccount extends Component {
-
+    
+    constructor(props) {
+        
+    }
     render() {
         return (
             <div>
