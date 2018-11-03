@@ -34,6 +34,8 @@ export default class Register extends Component {
             this.state.password.length > 8
             &&
             this.state.confirm === this.state.password
+            &&
+            this.state.age >= 13
         )
     }
 
@@ -77,6 +79,21 @@ export default class Register extends Component {
                         >
                         </input>
                         <small>(*Username length must be between 3-64 characters)</small>
+                    </div>
+
+                    <div
+                        className="form-group"
+                    >
+                        <input
+                            className="form-control"
+                            type="number"
+                            id="age"
+                            min="13"
+                            maxLength="2"
+                            placeholder="Age"
+                            onChange={this.handleChange}
+                        >
+                        </input>
                     </div>
     
                     <div
@@ -155,19 +172,6 @@ export default class Register extends Component {
                             id="nickname"
                             placeholder="Nickname"
                             value={this.state.nickname}
-                            onChange={this.handleChange}
-                        >
-                        </input>
-                    </div>
-    
-                    <div
-                        className="form-group"
-                    >
-                        <input
-                            className="form-control"
-                            type="number"
-                            id="age"
-                            placeholder="Age"
                             onChange={this.handleChange}
                         >
                         </input>
