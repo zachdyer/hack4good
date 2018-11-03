@@ -1,0 +1,22 @@
+/* 
+    These are the chat widget overides for the styles
+    so we can match the theme.
+*/
+
+.rcw-messages-container {
+    background: none;
+}
+
+/* dark color */
+.rcw-client {
+    background-color: #656487;
+}
+
+/* light color */
+.rcw-conversation-container .rcw-header, .rcw-launcher, .rcw-response {
+    background-color: #CCC9FF;
+}
+
+.rcw-conversation-container .rcw-close-button {
+    background-color: transparent;
+}
