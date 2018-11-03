@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
@@ -34,5 +35,10 @@ public class MainController {
 		return request.getHeader("token");
 	}
 
-
+	@RequestMapping(value = "/test3")
+	@ResponseBody
+	public String test3(HttpServletResponse response) {
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		return "test";
+	}
 }
