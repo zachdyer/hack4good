@@ -45,15 +45,6 @@ class Home extends Component {
       }));
     }
   }
-  
-  
-  // I needed to get the set the height of the container so 
-  componentDidMount() {
-    let windowHeight = window.innerHeight;
-    let homeDiv = this.refs.home;
-    //homeDiv.style = "height: " + windowHeight + "px";
-    
-  }
 
   render = () => {
     let home = (<div className="container home" id="home">
