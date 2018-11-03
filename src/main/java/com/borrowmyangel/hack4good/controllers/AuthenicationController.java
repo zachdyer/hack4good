@@ -1,8 +1,11 @@
 package com.borrowmyangel.hack4good.controllers;
 
+import com.borrowmyangel.hack4good.service.SessionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,9 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = {"/"})
 public class AuthenicationController {
 
+    @Autowired
+    SessionService sessionService;
+
     @RequestMapping("/isLoggedIn")
-    public String isLoggedIn(HttpServletRequest request, Model model) {
-        return null;
+    @ResponseBody
+    public Boolean isLoggedIn(HttpServletRequest request, Model model) {
+        return sessionService.isLoggedIn();
     }
 
 }
