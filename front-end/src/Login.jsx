@@ -129,7 +129,7 @@ class Login extends Component {
         let forgot = null;
         let login = (
             <div className="container Login">
-                <img className="mb-4" src="logo.png" width="100%"/>
+                <img className="mb-4" src="logo.png" width="100%" alt=""/>
                 <form 
                 onSubmit={this.handleSubmit}
                 className="form-signin"

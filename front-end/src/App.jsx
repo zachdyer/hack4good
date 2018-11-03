@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from "./Login";
 import CreateAccount from "./CreateAccount"
+import Chat from "./Chat";
 
 class Home extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Home extends Component {
 
   render = () => {
     let home = (<div className="container home" id="home">
-      <img className="mb-4" src="logo.png" width="100%"/>
+      <img className="mb-4" src="logo.png" width="100%" alt=""/>
       <button
         onClick={this.handleSubmit} 
         value={"immediate"} 
@@ -79,6 +80,8 @@ class Home extends Component {
       return <Login />;
     } else if (this.state.create) {
       return <CreateAccount />;
+    } else  if (this.state.immediate) {
+      return <Chat />
     } else {
       return home;
     }
