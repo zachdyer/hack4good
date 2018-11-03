@@ -53,7 +53,7 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="regular">
+            <div className="register mb-5">
                 <div className="container">
                     <img src="logo.png" className="mb-4" alt="" width="100%" />
                     <form
@@ -218,11 +218,11 @@ export default class Register extends Component {
                             </input>
                         </div>
                         <button 
-                        className="form-control" 
-                        disabled={!this.validateForm()}
-                        type="submit"
-                        >
-                        Register
+                            className="form-control btn-primary" 
+                            disabled={!this.validateForm()}
+                            type="submit"
+                            >
+                                Register
                         </button>
                     </form>
                 </div>
