@@ -63,7 +63,7 @@ class Login extends Component {
     // =====================================================================
     validateForm() {
         return (
-            this.state.identifier.length > 0 
+            this.state.identifier.length > 3 
             &&
             this.state.password.length > 8
         )
@@ -138,7 +138,7 @@ class Login extends Component {
                         <input 
                         autoFocus
                         className="form-control"
-                        type="email"
+                        type="text"
                         id="identifier"
                         placeholder="Email or username"
                         value={this.state.identifier}

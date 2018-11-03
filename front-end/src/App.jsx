@@ -47,7 +47,7 @@ class Home extends Component {
     }
   }
 
-  render = () => {
+  render() {
     let home = (<div className="container home" id="home">
       <img className="mb-4" src="logo.png" width="100%" alt=""/>
       <button
