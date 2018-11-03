@@ -7,5 +7,5 @@
 	<h1>${code}</h1>
 	<h2>${message}</h2>
 	<p>Sorry about that.</p>
-	<img src="<c:url value="/resources/img/puppies/${puppyId}.jpg" />" id="puppy" alt="Sad puppy" class="img-fluid rounded">
+	<img src="<c:url value="/resources/img/puppy.jpg" />" id="puppy" alt="Sad puppy" class="img-fluid rounded">
 </div>
