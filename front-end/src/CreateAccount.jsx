@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Regular from "./Regular";
+import Register from "./Register";
 export default class CreateAccount extends Component {
     
     constructor(props) {
@@ -7,7 +7,7 @@ export default class CreateAccount extends Component {
     }
     render() {
         return (
-            <Regular />
+            <Register />
         );
     }
 }

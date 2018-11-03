@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Popover from "rm-react-popover";
-export default class Regular extends Component {
+export default class Register extends Component {
     
     constructor(props) {
         
