@@ -1,6 +1,7 @@
 package com.borrowmyangel.hack4good.controllers;
 
 import com.borrowmyangel.hack4good.domain.User;
+import com.borrowmyangel.hack4good.response.LoginStatus;
 import com.borrowmyangel.hack4good.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,9 +44,15 @@ public class AccountController {
         accountService.changeAngelStatus(Integer.parseInt(request.getParameter("id")), request.getParameter("status"));
     }
 
-    @RequestMapping(value="/testCreateApplication", method = RequestMethod.POST)
+    @RequestMapping(value="/testCreateApplication", method = RequestMethod.GET)
     @ResponseBody
     public User testCreateApplication(HttpServletRequest request, Model model) {
         return accountService.testCreateApplication();
     }
+
+	@RequestMapping("/checkLogin")
+	@ResponseBody
+	public LoginStatus isLoggedIn(HttpServletRequest request) {
+		return new LoginStatus(accountService.checkLogin(request));
+	}
 }

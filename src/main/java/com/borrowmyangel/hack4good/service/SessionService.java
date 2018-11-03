@@ -2,8 +2,12 @@ package com.borrowmyangel.hack4good.service;
 
 import com.borrowmyangel.hack4good.dao.LoginRepo;
 import com.borrowmyangel.hack4good.dao.SessionRepo;
+import com.borrowmyangel.hack4good.domain.Login;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class SessionService {
@@ -31,5 +35,6 @@ public class SessionService {
         //return sessionRepo.login(id, pass);
         return null;
     }
+
 
 }
