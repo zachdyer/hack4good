@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import logo from './logo.svg';
 import './App.css';
 
 function isLoggedIn() {
-    return true;
+    return false;
 }
 
 function getUserInfo() {
@@ -24,9 +23,10 @@ class App extends Component {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
-              {userInfo.name} is logged in.
+              Welcome, {userInfo.name}!
             </p>
           </header>
+          
         </div>
       );
     } else {
@@ -34,18 +34,22 @@ class App extends Component {
       return (
         <div className="App" id="app">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              User is not logged in.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
+            <form class="form-signin">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+              <label for="inputEmail" class="sr-only">Email address</label>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required/>
+              <div class="checkbox mb-3">
+                <label>
+                  <input type="checkbox" value="remember-me"/> Remember me
+                </label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+              <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+            </form>
+            
           </header>
         </div>
       );
