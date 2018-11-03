@@ -1,10 +1,10 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.home {
+  background-color: black;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .App-header {
@@ -30,9 +30,32 @@
     transform: rotate(360deg);
   }
 }
+
 /*  Colors 
-    #CCC9FF
+    Light color: #CCC9FF
+    Medium color: #656487
 */
 body {
   background-color: black;
 }
+
+/* bootstrap overrides */
+.btn-primary {
+  background-color: #656487;
+  border-color: #575673;
+  text-transform: uppercase;
+  border-radius: 30px;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show>.btn-primary.dropdown-toggle {
+  background-color: #656487;
+  border-color: #575673;
+  text-transform: uppercase;
+}
+
+.btn-block+.btn-block {
+  margin-top: 20px;
+}
+

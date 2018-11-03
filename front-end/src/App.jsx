@@ -16,6 +16,10 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  donation() {
+    window.open("https://4agc.com/donation_pages/c9252832-caf3-4cf1-99eb-7450c0dc4699?gift_id=3fbcc69f-54aa-4581-b01b-93106c58b131");
+  }
+
   // When you clickity-click, change the states
   // Each state is like the US states, finicky and slow
   // but it will render the right page on click. Ain't that neat.
@@ -41,25 +45,46 @@ class Home extends Component {
       }));
     }
   }
+  
+  
+  // I needed to get the set the height of the container so 
+  componentDidMount() {
+    let windowHeight = window.innerHeight;
+    let homeDiv = this.refs.home;
+    //homeDiv.style = "height: " + windowHeight + "px";
+    
+  }
 
-  render() {
-    let home = (<div>
-      <img class="mb-4" src="logo.png" alt="" width="100%"/>
-      <div className="btn-group-vertical">
-        <button onClick={this.handleSubmit} value={"immediate"} className="btn btn-primary btn-lg">
-          Get immediate help
-        </button>
-        <button onClick={this.handleSubmit} value={"login"} className="btn btn-primary btn-lg">
-          login
-        </button>
-        <button onClick={this.handleSubmit} value={"create"} className="btn btn-primary btn-lg">
-          Create an account
-        </button>
-      </div>
-    </div>);
+  render = () => {
+    let home = (<div className="container home" id="home">
+      <img className="mb-4" src="logo.png" width="100%"/>
+      <button
+        onClick={this.handleSubmit} 
+        value={"immediate"} 
+        className="btn btn-primary btn-lg btn-block">
+        Get immediate help
+      </button>
+      
+      <button 
+        onClick={this.handleSubmit} 
+        value={"login"} 
+        className="btn btn-primary btn-lg btn-block">
+        login
+      </button>
+      <button onClick={this.handleSubmit} value={"create"} className="btn btn-primary btn-lg btn-block">
+        Create an account
+      </button>
+      <button onClick={this.donation} className="btn btn-primary btn-lg btn-block">
+        Donate
+      </button>
+    </div>
+    );
 
     
-    if (this.state.login === true) {
+  
+    
+   
+    if (this.state.login) {
       return <Login />;
     } else if (this.state.create) {
       return <CreateAccount />;
