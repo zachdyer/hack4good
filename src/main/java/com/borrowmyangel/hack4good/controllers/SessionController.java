@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = {"/"})
@@ -20,18 +22,25 @@ public class SessionController {
     @RequestMapping(value="/session/startSession", method = RequestMethod.POST)
     @ResponseBody
     public void startSession(HttpServletRequest request, Model model) {
-        sessionService.startSession(request.getParameter("id"));
+        sessionService.startSession(Integer.parseInt(request.getParameter("id")));
     }
 
     @RequestMapping(value="/session/checkSession", method = RequestMethod.GET)
     @ResponseBody
     public String getSession(HttpServletRequest request, Model model) {
-        return sessionService.checkSessionById(request.getParameter("id"));
+        return sessionService.checkSessionById(Integer.parseInt(request.getParameter("id")));
     }
 
     @RequestMapping(value="/checkLogin", method = RequestMethod.POST)
     @ResponseBody
     public Boolean checkLogin(HttpServletRequest request, Model model) {
-        return sessionService.isLoggedIn();
+        return sessionService.isLoggedIn(Integer.parseInt(request.getParameter("id")));
+    }
+
+    @RequestMapping(value="/login", method = RequestMethod.POST)
+    @ResponseBody
+    public ArrayList<String> login(HttpServletRequest request, Model model) {
+        String token = sessionService.login(Integer.parseInt(request.getParameter("identifier")), request.getParameter("password"));
+        return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
 }

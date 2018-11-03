@@ -37,15 +37,8 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    @ResponseBody
-    public List<String> login(HttpServletRequest request, Model model) {
-        String token = accountService.login(request.getParameter("identifier"), request.getParameter("password"));
-        return new ArrayList<>("Successful", token);
-    }
-
-    @RequestMapping(value="/changeStatus", method = RequestMethod.POST)
-    public void changeStatus(HttpServletRequest request, Model model) {
-
+    @RequestMapping(value="/changeAngelStatus", method = RequestMethod.POST)
+    public void changeAngelStatus(HttpServletRequest request, Model model) {
+        accountService.changeAngelStatus(Integer.parseInt(request.getParameter("id")), request.getParameter("status"));
     }
 }
