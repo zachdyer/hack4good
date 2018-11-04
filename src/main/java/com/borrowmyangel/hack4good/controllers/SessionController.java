@@ -65,8 +65,8 @@ public class SessionController {
 	 */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     @ResponseBody
-    public ArrayList<String> login(LoginUpload login) {
-        String token = sessionService.login(login.getEmail(), login.getPassword());
+    public ArrayList<String> login(HttpServletRequest request) {
+        String token = sessionService.login(request.getParameter("email"), request.getParameter("password"));
         return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
 
