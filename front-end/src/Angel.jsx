@@ -385,7 +385,7 @@ export default class AngelRegister extends Component {
                             </input>
                         </div>
                         <button
-                            className="form-control"
+                            className="form-control btn-primary"
                             disabled={!this.validateForm()}
                             type="submit"
                         >
