@@ -8,9 +8,12 @@ import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.User;
 import com.borrowmyangel.hack4good.response.RegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -86,7 +89,7 @@ public class AccountService {
 		}
 
 		// Get the matching login, if any
-		Login login = loginRepo.getByToken(token);
+		Login login = loginRepo.findLoginByToken(token);
 
 		// Check if the login exists and is valid
 		return login != null && login.getValid();

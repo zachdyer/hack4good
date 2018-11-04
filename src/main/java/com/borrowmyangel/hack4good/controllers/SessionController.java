@@ -33,7 +33,7 @@ public class SessionController {
     @RequestMapping(value="/session/startSession", method = RequestMethod.POST)
     @ResponseBody
     public void startSession(HttpServletRequest request) {
-        sessionService.startSession(Integer.parseInt(request.getParameter("id")));
+
     }
 
 	/**
