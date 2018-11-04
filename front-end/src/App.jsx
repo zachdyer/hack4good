@@ -74,6 +74,8 @@ class Home extends Component {
       <button onClick={this.donation} className="btn btn-primary btn-lg btn-block">
         Donate
       </button>
+      
+      <small>At any time before login, press the logo to return here</small>
     </div>
     );
 

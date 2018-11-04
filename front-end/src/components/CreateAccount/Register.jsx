@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import Home from "./../../App.jsx";
+import Success from "./Success";
+
+// =====================================================================
+// Allows the user to register as a regular user/ally of a user
+// =====================================================================
 export default class Register extends Component {
     
     constructor(props) {
         
         super(props);
 
+        // =====================================================================
+        // States for the form information and updating.
+        // =====================================================================
         this.state = {
             username: "",
             email: "",
@@ -25,6 +32,10 @@ export default class Register extends Component {
         this.validateForm = this.validateForm.bind(this);
     }
 
+    // =====================================================================
+    // Basic form validation for the data that is mandatory for this kind
+    // of registration.
+    // =====================================================================
     validateForm() {
         return (
             this.state.username.length > 3
@@ -39,9 +50,14 @@ export default class Register extends Component {
         )
     }
 
+    // =====================================================================
+    // Handles the changes in the forms and places them in the state.
+    // Since account_type is toggled by a check box, it is necessary to
+    // switch the values based on the current bool of the checkbox (checked
+    // or unchecked).
+    // =====================================================================
     handleChange(e) {
         e.persist();
-        console.log(e.target.id);
         if (e.target.id !== "account_type"){
             this.setState(
                 state => ({
@@ -63,45 +79,52 @@ export default class Register extends Component {
                 )
             }
         }
-
-        console.log(this.state.account_type)
         
     }
 
+    // =====================================================================
+    // Submit the form information to the backend server.
+    // TODO: fully send information to server then route to Succes view.
+    // =====================================================================
     handleSubmit(e) {
-        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/register";
+        // let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/register";
+        
+        // this.setState(
+        //     state => ({
+        //         confirm : undefined
+        //     })
+        // )
+
+
+        // console.log(this.state);
+        // fetch(
+        //     server, {
+        //         origin: "cors",
+        //         method: "POST",
+        //         headers: {},
+        //         body: JSON.stringify(this.state)
+        //     }
+        // ).then(res => console.log(res)).then(
+        //     (result) => {
+        //         console.log(result);
+        //     },
+        //     (error) => {
+        //         console.log("FAILED");
+        //         console.log(error);
+        //     }
+        // )
         
         this.setState(
             state => ({
-                confirm : undefined
+                redirect : true
             })
         )
-
-
-        console.log(this.state);
-        fetch(
-            server, {
-                origin: "cors",
-                method: "POST",
-                headers: {},
-                body: JSON.stringify(this.state)
-            }
-        ).then(res => console.log(res)).then(
-            (result) => {
-                console.log(result);
-            },
-            (error) => {
-                console.log("FAILED");
-                console.log(error);
-            }
-        )
-
     }
     
 
     render() {
-        if(this.state.home){
-            return <Home />
+        if (this.state.redirect) {
+            return <Success kind="user"/>
         }
         return (
             <div className="register mb-5 container">

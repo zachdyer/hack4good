@@ -103,8 +103,6 @@ class Login extends Component {
 
 
         e.preventDefault()
-        // ajax call to http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login
-        // it will return a list with a login token and it needs to be saved for later
     }
 
     // =====================================================================

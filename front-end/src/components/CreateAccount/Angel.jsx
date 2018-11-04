@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Home from "./../../App.jsx";
+import Success from "./Success";
 
 // =====================================================================
 // This is the form for the Angel registration and application process.
@@ -104,13 +104,16 @@ export default class AngelRegister extends Component {
     // =====================================================================
     handleSubmit(e) {
         console.log("Submitted");
-        e.preventDefault();
+        this.setState(
+            state => ({
+                redirect : true
+            })
+        )
     }
 
     render() {
-        console.log("render");
-        if(this.state.home) {
-            return <Home />
+        if (this.state.redirect) {
+            return <Success kind="angel" email={this.state.email}/>
         }
         return (
             <div className="register mb-5 container">
