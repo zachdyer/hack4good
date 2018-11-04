@@ -76,30 +76,30 @@ public class SessionService {
 
     	return email;
 
-    	if(!isAutenticated(email, pass)){
-    		return "FAILED";
-	    }
-	    List<User> users = (List)userRepo.findAll();
-    	User user = new User();
-
-	    for(User u: users){
-		    if(u.getEmail().equals(email)){
-			    user = u;
-		    }
-	    }
-
-	    String token = createLargeString();
-
-	    Login login = new Login();
-
-	    login.setValid(Boolean.TRUE);
-	    login.setUid(user);
-	    login.setToken(token);
-	    login.setDate_created(Timestamp.from(Instant.now()));
-
-	    loginRepo.save(login);
-
-        return token;
+//    	if(!isAutenticated(email, pass)){
+//    		return "FAILED";
+//	    }
+//	    List<User> users = (List)userRepo.findAll();
+//    	User user = new User();
+//
+//	    for(User u: users){
+//		    if(u.getEmail().equals(email)){
+//			    user = u;
+//		    }
+//	    }
+//
+//	    String token = createLargeString();
+//
+//	    Login login = new Login();
+//
+//	    login.setValid(Boolean.TRUE);
+//	    login.setUid(user);
+//	    login.setToken(token);
+//	    login.setDate_created(Timestamp.from(Instant.now()));
+//
+//	    loginRepo.save(login);
+//
+//        return token;
     }
 
 	/**
