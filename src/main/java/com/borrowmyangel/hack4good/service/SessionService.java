@@ -74,7 +74,7 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
-    	if(!isAutenticated(email, pass)){
+    	if(isAutenticated(email, pass) == false){
     		return "FAILED";
 	    }
 
