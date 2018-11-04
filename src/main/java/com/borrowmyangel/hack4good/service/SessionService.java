@@ -74,7 +74,7 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
-    	if(!isAutenticated(email, pass)){
+    	/*if(!isAutenticated(email, pass)){
     		return "FAILED";
 	    }
 	    List<User> users = (List)userRepo.findAll();
@@ -97,9 +97,9 @@ public class SessionService {
 
 	    loginRepo.save(login);
 
-        return token;
+        return token;*/
 
-	    //return users.toString();
+	    return "Success";
     }
 
 	/**
