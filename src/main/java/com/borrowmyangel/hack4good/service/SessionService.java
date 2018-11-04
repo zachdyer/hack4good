@@ -74,11 +74,12 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
+    	return email;
 
 //    	if(!isAutenticated(email, pass)){
 //    		return "FAILED";
 //	    }
-	    List<User> users = (List)userRepo.findAll();
+/*	    List<User> users = (List)userRepo.findAll();
     	User user = new User();
 
 	    for(User u: users){
@@ -98,7 +99,7 @@ public class SessionService {
 
 	    loginRepo.save(login);
 
-        return token;
+        return token;*/
     }
 
 	/**
@@ -110,7 +111,7 @@ public class SessionService {
     	List<User> users = (List)userRepo.findAll();
 
 		for(User user: users){
-			if(user.getEmail().equals(email) && user.getPassword_hash().equals(pass)){
+			if(user.getEmail() == email && user.getPassword_hash() == pass){
 				return true;
 			}
 		}
