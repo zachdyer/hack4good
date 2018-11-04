@@ -44,7 +44,7 @@ class App extends Component {
           <Widget 
               handleNewUserMessage={this.handleNewUserMessage}
               title="Chat Window"
-              subtitle="We are connecting you to an angel now..."
+              subtitle=""
           />
         </div>
       );

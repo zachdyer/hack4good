@@ -5,6 +5,7 @@
 
 .rcw-messages-container {
     background: none;
+    padding: 20px 0;
 }
 
 /* dark color */
@@ -15,8 +16,19 @@
 /* light color */
 .rcw-conversation-container .rcw-header, .rcw-launcher, .rcw-response {
     background-color: #CCC9FF;
+    color: #4f4f4f;
 }
 
 .rcw-conversation-container .rcw-close-button {
     background-color: transparent;
+}
+
+.rcw-conversation-container .rcw-header {
+    color: white;
+    padding: 20px;
+    
+}
+.rcw-conversation-container .rcw-title {
+    padding: 0;
+    
 }
