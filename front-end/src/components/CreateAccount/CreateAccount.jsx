@@ -11,7 +11,6 @@ export default class CreateAccount extends Component {
         this.state = {
             angel_form : false,
             user_form : false,
-            home: false
         };
 
         this.handleChange = this.handleChange.bind(this);

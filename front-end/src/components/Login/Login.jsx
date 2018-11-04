@@ -3,9 +3,9 @@ import Home from "./../../App.jsx";
 import "./Login.css";
 import CreateAccount from "./../CreateAccount/CreateAccount";
 
-// =========================================================
+// =====================================================================
 // The Login component for rendering the login page.
-// =========================================================
+// =====================================================================
 
 class Login extends Component {
     
@@ -80,20 +80,8 @@ class Login extends Component {
     // =====================================================================
     handleSubmit(e) {
         console.log(this.state.password)
-        let server = "https://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
+        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
 
-        // let formBody = []
-
-        // let encodedKey = encodeURIComponent("email");
-        // let encodedValue = encodeURIComponent(this.state.email);
-        // formBody.push(encodedKey + "=" + encodedValue)
-
-        
-        // encodedKey = encodeURIComponent("password");
-        // encodedValue = encodeURIComponent(this.state.password);
-        // formBody.push(encodedKey + "=" + encodedValue)
-
-        // formBody = formBody.join("&");
         fetch(
             server, {
                 method: "POST",

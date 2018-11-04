@@ -4,6 +4,11 @@ import Home from "./../../App.jsx";
 import 'react-chat-widget/lib/styles.css';
 import './Chat.css';
 
+
+// =====================================================================
+// Utilize a built App created by react-chat-widget that will open a
+// chat window.
+// =====================================================================
 class App extends Component {
     constructor(props) {
       super(props);

@@ -1,11 +1,21 @@
 import React, { Component } from "react";
 import Home from "./../../App.jsx";
-export default class AngelRegister extends Component {
 
+// =====================================================================
+// This is the form for the Angel registration and application process.
+// It handles all of the mandatory data that is asked in order for the
+// application to succeed.
+// =====================================================================
+export default class AngelRegister extends Component {
     constructor(props) {
 
         super(props);
 
+        // =====================================================================
+        // Many of these states are simply made in order to help store the form
+        // information that will eventually be sent to the backend to be placed
+        // in a database.
+        // =====================================================================
         this.state = {
             username: "",
             email: "",
@@ -27,8 +37,7 @@ export default class AngelRegister extends Component {
             gender: "",
             city: "",
             state: "",
-            acct_type: "ANGEL",
-            home: false
+            acct_type: "ANGEL"
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,6 +47,11 @@ export default class AngelRegister extends Component {
     }
     
 
+    // =====================================================================
+    // Basic form validation done on the server side to prevent submission
+    // without criterias to be met:
+    // TODO: add in tool tips to tell the user what may or may not be wrong.
+    // =====================================================================
     validateForm() {
         return (
             this.state.username.length > 3
@@ -72,6 +86,9 @@ export default class AngelRegister extends Component {
         )
     }
 
+    // =====================================================================
+    // A state change handler for the entry forms.
+    // =====================================================================
     handleChange(e) {
         e.persist();
         this.setState(
@@ -81,6 +98,10 @@ export default class AngelRegister extends Component {
         );
     }
 
+    // =====================================================================
+    // The handler for submitting the information to the back end server.
+    // TODO: create post AJAX call to the backend.
+    // =====================================================================
     handleSubmit(e) {
         console.log("Submitted");
         e.preventDefault();
