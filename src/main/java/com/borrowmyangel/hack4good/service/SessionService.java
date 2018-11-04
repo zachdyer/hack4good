@@ -74,9 +74,9 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
-    	boolean temp = isAutenticated(email, pass);
+    	Boolean isAuthenticated = checkForMatch(email, pass);
 
-    	if(temp){
+    	if(isAuthenticated == Boolean.FALSE){
     		return "FAILED";
 	    }
 
@@ -108,16 +108,16 @@ public class SessionService {
 	 * @param email, pass
 	 * @return True or False
 	 */
-    private boolean isAutenticated (String email, String pass){
+    private Boolean checkForMatch (String email, String pass){
     	List<User> users = (List)userRepo.findAll();
 
 		for(User user: users){
-			if(user.getEmail() == email && user.getPassword_hash() == pass){
-				return true;
+			if(user.getEmail().equals(email) && user.getPassword_hash().equals(pass)){
+				return Boolean.TRUE;
 			}
 		}
 
-    	return false;
+    	return Boolean.FALSE;
     }
 
 	/**
