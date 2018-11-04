@@ -4,7 +4,7 @@
 */
 
 .rcw-messages-container {
-    background: none;
+    background-color: rgba(0,0,0,0.8);
     padding: 20px 0;
 }
 
