@@ -3,7 +3,6 @@ package com.borrowmyangel.hack4good.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -14,7 +13,7 @@ public class Login {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer lid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
     @JsonIgnore
     private User uid;

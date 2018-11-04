@@ -6,20 +6,17 @@ import com.borrowmyangel.hack4good.dao.UserRepo;
 import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.Session;
 import com.borrowmyangel.hack4good.domain.User;
-import jdk.nashorn.internal.parser.Token;
+import com.borrowmyangel.hack4good.dto.SessionRequest;
+import com.borrowmyangel.hack4good.response.SessionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import static java.lang.Math.round;
+import java.util.Optional;
 
 @Service
 public class SessionService {
@@ -33,23 +30,64 @@ public class SessionService {
     @Autowired
 	UserRepo userRepo;
 
+    @Autowired
+    AccountService accountService;
 
-	/**
-	 *
-	 * @param id
-	 * @return
-	 */
-    public void startSession(Integer id) {
-        //sessionRepo.startSession(id);
+
+    public SessionResponse startSession(SessionRequest sessionRequest, HttpServletRequest request) {
+    	// Check the login
+        if (accountService.checkLogin(request) == null) {
+        	return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+        }
+
+        // Make sure the request is valid
+        if (!sessionRequest.isValid()) {
+        	return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+        }
+
+        // Get the user and create the session
+        User user = accountService.getUserFromToken(request.getHeader("token"));
+        Session session = new Session();
+        session.setPin(user);
+        session.setStatus(Session.Status.WAITING);
+        session.setSession_type(sessionRequest.getType());
+		sessionRepo.save(session);
+
+
+		return new SessionResponse(session.getSid(), session.getStatus(), session.getSession_type(), null);
     }
 
-	/**
-	 *
-	 * @param id
-	 * @return Status of session
-	 */
-    public String checkSessionById(Integer id) {
-        return sessionRepo.findById(id).get().getStatus().toString();
+    public SessionResponse checkSessionById(Integer id, HttpServletRequest request) {
+    	// Check the login
+	    User requestedLogin = accountService.checkLogin(request);
+	    if (requestedLogin == null) {
+	    	return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+	    }
+
+	    // Check if the ID is null (check it here because Hibernate gets upset if we pass it below)
+	    if (id == null) {
+	    	return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+	    }
+
+	    // Get the session
+    	Optional<Session> session = sessionRepo.findById(id);
+
+    	// Check if the session is there
+    	if (!session.isPresent()) {
+    		return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+	    }
+
+	    // Get the user of the session and the requesting user
+	    User sessionPin = session.get().getPin();
+    	User sessionAngel = session.get().getAngel();
+
+    	// Check that either the person in need or the angel made the request
+	    if (requestedLogin != sessionPin && requestedLogin != sessionAngel) {
+	    	return new SessionResponse(SessionResponse.ResponseStatus.FAILED);
+	    }
+
+	    // Return the session info
+	    return new SessionResponse(session.get());
     }
 
 	/**

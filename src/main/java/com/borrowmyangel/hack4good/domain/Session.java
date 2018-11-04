@@ -24,9 +24,11 @@ public class Session{
     private User angel;
 
     @Column(columnDefinition="ENUM")
+    @Enumerated(EnumType.STRING)
     private Session_Type session_type;
 
     @Column(columnDefinition="ENUM")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(columnDefinition="TIMESTAMP")
