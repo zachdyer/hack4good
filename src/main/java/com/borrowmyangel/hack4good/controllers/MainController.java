@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = {"/"})
@@ -35,9 +36,17 @@ public class MainController {
 		return request.getHeader("token");
 	}
 
-	@RequestMapping(value = "/test3")
+	@RequestMapping(value = "/test3", method = RequestMethod.POST)
 	@ResponseBody
-	public String test3(HttpServletResponse response) {
-		return "test";
+	public String test3(HttpServletRequest request) {
+		Map<String, String[]> params = request.getParameterMap();
+		for (String key: params.keySet()) {
+			System.out.print(key + ": ");
+			for (int i = 0; i < params.get(key).length; i++) {
+				System.out.print(params.get(key)[i] + ",");
+			}
+			System.out.println(";");
+		}
+		return "{'message': 'yeet'}";
 	}
 }
