@@ -106,7 +106,7 @@ public class SessionService {
 	 * @param email, pass
 	 * @return True or False
 	 */
-    private Boolean isAutenticated (String email, String pass){
+    private boolean isAutenticated (String email, String pass){
     	List<User> users = (List)userRepo.findAll();
 
 		for(User user: users){
