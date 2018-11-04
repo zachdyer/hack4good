@@ -23,7 +23,6 @@ class Home extends Component {
   // Each state is like the US states, finicky and slow
   // but it will render the right page on click. Ain't that neat.
   handleSubmit(e){
-    console.log(e.target.value)
     if (e.target.value === "create") {
       this.setState(state => ({
         create: true,

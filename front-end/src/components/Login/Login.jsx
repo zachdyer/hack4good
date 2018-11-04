@@ -79,21 +79,32 @@ class Login extends Component {
     // request to the end point APIs for authorizaiton/authnetication
     // =====================================================================
     handleSubmit(e) {
-        console.log(this.state.password)
+        
         let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
 
+        let formBody = [];
+        let componentKey = encodeURIComponent("email");
+        let componentValue = encodeURIComponent(this.state.email);
+
+        formBody.push(componentKey + "=" + componentValue);
+
+        componentKey = encodeURIComponent("password");
+        componentValue = encodeURIComponent(this.state.password);
+
+        formBody.push(componentKey + "=" + componentValue);
+
+        formBody = formBody.join("&")
         fetch(
             server, {
                 method: "POST",
-                headers: {},
-                body: JSON.stringify({
-                    email : this.state.email,
-                    password : this.state.password
-                })
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                },
+                body: formBody
             }
-        ).then(res => console.log(res)).then(
+        ).then(res => res.json()).then(
             (result) => {
-                console.log(result);
+                console.log(decodeURIComponent(result[1]));
             },
             (error) => {
                 console.log("FAILED");
