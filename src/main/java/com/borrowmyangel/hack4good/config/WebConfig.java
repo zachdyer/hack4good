@@ -56,7 +56,7 @@ public class WebConfig implements WebMvcConfigurer {
 				.addResolver(new PathResourceResolver());
 	}
 
-	@Bean
+	/*@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
@@ -64,5 +64,5 @@ public class WebConfig implements WebMvcConfigurer {
 				registry.addMapping("/**").allowedOrigins("*");
 			}
 		};
-	}
+	}*/
 }
