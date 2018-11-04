@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Popover from "rm-react-popover";
+import Home from "./App.jsx";
 export default class Register extends Component {
     
     constructor(props) {
@@ -63,6 +63,9 @@ export default class Register extends Component {
     }
 
     render() {
+        if(this.state.home){
+            return <Home />
+        }
         return (
             <div className="register mb-5 container">
                 <a onClick={this.toggleHome}>

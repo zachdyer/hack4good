@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Popover from "rm-react-popover";
+import Home from "./App.jsx";
 export default class AngelRegister extends Component {
 
     constructor(props) {
@@ -27,12 +27,23 @@ export default class AngelRegister extends Component {
             gender: "",
             city: "",
             state: "",
-            acct_type: "ANGEL"
+            acct_type: "ANGEL",
+            home: false
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        this.toggleHome = this.toggleHome.bind(this);
+        
+        console.log(this);
+    }
+    
+    toggleHome() {
+        this.setState(
+            state => ({
+                home: true
+            }))
     }
 
     validateForm() {
@@ -84,10 +95,16 @@ export default class AngelRegister extends Component {
     }
 
     render() {
+        console.log("render");
+        if(this.state.home) {
+            return <Home />
+        }
         return (
             <div className="register mb-5 container">
                 <div className="container">
-                    <img src="logo.png" className="mb-4" alt="" width="100%" />
+                    <a onClick={this.toggleHome}>
+                        <img src="logo.png" className="mb-4" alt="" width="100%" />
+                    </a>
                     <form
                         onSubmit={this.handleSubmit}
                     >

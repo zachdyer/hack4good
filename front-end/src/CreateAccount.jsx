@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Register from "./Register";
 import AngelRegister from "./Angel";
-import Home from "./App.jsx"
+import Home from "./App.jsx";
 export default class CreateAccount extends Component {
     
     constructor(props) {
