@@ -38,15 +38,8 @@ public class MainController {
 
 	@RequestMapping(value = "/test3", method = RequestMethod.POST)
 	@ResponseBody
-	public String test3(HttpServletRequest request) {
-		Map<String, String[]> params = request.getParameterMap();
-		for (String key: params.keySet()) {
-			System.out.print(key + ": ");
-			for (int i = 0; i < params.get(key).length; i++) {
-				System.out.print(params.get(key)[i] + ",");
-			}
-			System.out.println(";");
-		}
-		return "{'message': 'yeet'}";
+	public String test3(@RequestBody String body, HttpServletRequest request) {
+		System.out.println(body);
+		return "{\"message\": \"yeet\"}";
 	}
 }
