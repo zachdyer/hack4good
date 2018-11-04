@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Register from "./Register";
 import AngelRegister from "./Angel";
+import Home from "./App.jsx"
 export default class CreateAccount extends Component {
     
     constructor(props) {
@@ -8,10 +9,20 @@ export default class CreateAccount extends Component {
 
         this.state = {
             angel_form : false,
-            user_form : false
+            user_form : false,
+            home: false
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.toggleHome = this.toggleHome.bind(this);
+    }
+    
+    toggleHome() {
+        this.setState(
+            state => ({
+                home: true
+            })
+        );
     }
 
     handleChange(e) {
@@ -35,7 +46,9 @@ export default class CreateAccount extends Component {
         let register = <Register />;
         let choices = (
             <div className="container CreateAccount">
-                <img className="mb-4" src="logo.png" width="100%" alt="" />
+                <a onClick={this.toggleHome}>
+                    <img className="mb-4" src="logo.png" width="100%" alt="" />
+                </a>
                 <button
                     onClick={this.handleChange}
                     value={"user"}
@@ -58,6 +71,8 @@ export default class CreateAccount extends Component {
             return register;
         } else if (this.state.angel_form === true) {
             return angel;
+        } else if (this.state.home === true) {
+            return <Home />;
         } else {
             return choices;
         }

@@ -25,7 +25,7 @@ class Home extends Component {
   // Each state is like the US states, finicky and slow
   // but it will render the right page on click. Ain't that neat.
   handleSubmit(e){
-    // console.log(e.target.value)
+    console.log(e.target.value)
     if (e.target.value === "create") {
       this.setState(state => ({
         create: true,
@@ -43,6 +43,13 @@ class Home extends Component {
         create: false,
         login: false,
         immediate: true
+      }));
+    } else if (e.target.value === "home") {
+      this.setState(state => ({
+        create: false,
+        login: false,
+        immediate: false,
+        home: true
       }));
     }
   }
@@ -72,16 +79,14 @@ class Home extends Component {
     </div>
     );
 
-    
-  
-    
-   
     if (this.state.login) {
       return <Login />;
     } else if (this.state.create) {
       return <CreateAccount />;
     } else  if (this.state.immediate) {
       return <Chat />
+    } else if(this.state.home){
+      return <Home />;
     } else {
       return home;
     }

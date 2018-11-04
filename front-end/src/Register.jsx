@@ -23,6 +23,7 @@ export default class Register extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
+        this.toggleHome = this.toggleHome.bind(this);
     }
 
     validateForm() {
@@ -52,12 +53,21 @@ export default class Register extends Component {
         console.log("Submitted");
         e.preventDefault();
     }
+    
+    toggleHome() {
+        this.setState(
+            state => ({
+                home: true
+            })
+        );
+    }
 
     render() {
         return (
             <div className="register mb-5 container">
-
-                <img src="logo.png" className="mb-4" alt="" width="100%" />
+                <a onClick={this.toggleHome}>
+                    <img src="logo.png" className="mb-4" alt="" width="100%" />
+                </a>
                 <form
                 onSubmit={this.handleSubmit}
                 >

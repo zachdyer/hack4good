@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Home from "./App.jsx"; 
 import "./Login.css";
 import CreateAccount from "./CreateAccount";
 
@@ -43,6 +44,7 @@ class Login extends Component {
             authorized : null,
             create : false,
             forgot : false,
+            home: false,
             identifier : "",
             password : ""
         };
@@ -55,6 +57,7 @@ class Login extends Component {
         this.validateForm = this.validateForm.bind(this);
         this.toggleCreate = this.toggleCreate.bind(this);
         this.toggleForgot = this.toggleForgot.bind(this);
+        this.toggleHome = this.toggleHome.bind(this);
     }
 
     // =====================================================================
@@ -79,6 +82,8 @@ class Login extends Component {
         console.log(this.state.password);
         console.log(this.state.identifier);
         e.preventDefault()
+        // ajax call to http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login
+        // it will return a list with a login token and it needs to be saved for later
     }
 
     // =====================================================================
@@ -120,6 +125,15 @@ class Login extends Component {
             })
         )
     }
+    
+    toggleHome() {
+        this.setState(
+            state => ({
+                home: true
+            })
+        );
+    }
+    
 
     // =====================================================================
     // Renders the page
@@ -129,7 +143,9 @@ class Login extends Component {
         let forgot = null;
         let login = (
             <div className="container Login">
-                <img className="mb-4" src="logo.png" width="100%" alt=""/>
+                <a onClick={this.toggleHome}>
+                    <img className="mb-4" src="logo.png" width="100%" alt=""/>
+                </a>
                 <form 
                 onSubmit={this.handleSubmit}
                 className="form-signin"
@@ -176,6 +192,8 @@ class Login extends Component {
             return create;
         } else if (this.state.forgot === true) {
             return forgot;
+        } else if (this.state.home === true) {
+            return <Home />;
         } else {
             return login;
         }
