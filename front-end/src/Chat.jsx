@@ -12,7 +12,6 @@ class App extends Component {
         login : false,
         immediate : false
       }
-      this.toggleHome = this.toggleHome.bind(this);
     }
     
     componentDidMount() {
@@ -25,20 +24,13 @@ class App extends Component {
         addResponseMessage("How can I help you?");
       }
       
-    toggleHome() {
-        this.setState(
-            state => ({
-                home: true
-            })
-        );
-    }
     render() {
       if(this.state.home) {
         return (<Home />)
       }
       return (
         <div className="container Chat">
-          <a onClick={this.toggleHome}>
+          <a href="/">
               <img src="logo.png" className="mb-4" alt="" width="100%" />
           </a>
           <Widget 

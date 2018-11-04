@@ -14,17 +14,8 @@ export default class CreateAccount extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.toggleHome = this.toggleHome.bind(this);
     }
     
-    toggleHome() {
-        this.setState(
-            state => ({
-                home: true
-            })
-        );
-    }
-
     handleChange(e) {
         if (e.target.value === "user") {
             this.setState(
@@ -46,7 +37,7 @@ export default class CreateAccount extends Component {
         let register = <Register />;
         let choices = (
             <div className="container CreateAccount">
-                <a onClick={this.toggleHome}>
+                <a href="/">
                     <img className="mb-4" src="logo.png" width="100%" alt="" />
                 </a>
                 <button
@@ -62,7 +53,7 @@ export default class CreateAccount extends Component {
                     value={"angel"}
                     className="btn btn-primary btn-lg btn-block"
                 >
-                    Apply to become an angel!
+                    Apply to become an angel
                 </button>
             </div>
         )
