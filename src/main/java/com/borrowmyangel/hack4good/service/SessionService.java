@@ -74,6 +74,8 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
+    	return email;
+
     	if(!isAutenticated(email, pass)){
     		return "FAILED";
 	    }
