@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from "./Login";
-import CreateAccount from "./CreateAccount"
-import Chat from "./Chat";
+import Login from "./components/Login/Login";
+import CreateAccount from "./components/CreateAccount/CreateAccount"
+import Chat from "./components/Chat/Chat";
 
 class Home extends Component {
   constructor(props) {

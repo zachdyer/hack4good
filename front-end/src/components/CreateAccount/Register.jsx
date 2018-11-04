@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Home from "./App.jsx";
+import Home from "./../../App.jsx";
 export default class Register extends Component {
     
     constructor(props) {
@@ -81,6 +81,7 @@ export default class Register extends Component {
         console.log(this.state);
         fetch(
             server, {
+                origin: "cors",
                 method: "POST",
                 headers: {},
                 body: JSON.stringify(this.state)

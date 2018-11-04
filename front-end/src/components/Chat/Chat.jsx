@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Widget, addResponseMessage } from 'react-chat-widget';
-import Home from "./App.jsx";
+import Home from "./../../App.jsx";
 import 'react-chat-widget/lib/styles.css';
 import './Chat.css';
 

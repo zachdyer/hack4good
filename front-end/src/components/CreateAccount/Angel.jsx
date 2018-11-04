@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Home from "./App.jsx";
+import Home from "./../../App.jsx";
 export default class AngelRegister extends Component {
 
     constructor(props) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Home from "./App.jsx"; 
+import Home from "./../../App.jsx"; 
 import "./Login.css";
-import CreateAccount from "./CreateAccount";
+import CreateAccount from "./../CreateAccount/CreateAccount";
 
 // =========================================================
 // The Login component for rendering the login page.
@@ -80,7 +80,7 @@ class Login extends Component {
     // =====================================================================
     handleSubmit(e) {
         console.log(this.state.password)
-        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
+        let server = "https://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
 
         // let formBody = []
 
@@ -98,10 +98,10 @@ class Login extends Component {
             server, {
                 method: "POST",
                 headers: {},
-                body: {
+                body: JSON.stringify({
                     email : this.state.email,
                     password : this.state.password
-                }
+                })
             }
         ).then(res => console.log(res)).then(
             (result) => {
