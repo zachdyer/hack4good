@@ -61,7 +61,7 @@ public class WebConfig implements WebMvcConfigurer {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*");
+				registry.addMapping("/**").allowedOrigins("http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com");
 			}
 		};
 	}
