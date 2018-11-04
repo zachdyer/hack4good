@@ -17,13 +17,12 @@ export default class Register extends Component {
             gender: "",
             city: "",
             state: "",
-            acct_type: "PERSON_IN_NEED"
+            account_type: "PERSON_IN_NEED"
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
-        this.toggleHome = this.toggleHome.bind(this);
     }
 
     validateForm() {
@@ -42,25 +41,62 @@ export default class Register extends Component {
 
     handleChange(e) {
         e.persist();
-        this.setState(
-            state => ({
-                [e.target.id]: e.target.value
-            })
-        );
+        console.log(e.target.id);
+        if (e.target.id !== "account_type"){
+            this.setState(
+                state => ({
+                    [e.target.id]: e.target.value
+                })
+            );
+        } else {
+            if (e.target.checked) {
+                this.setState(
+                    state => ({
+                        account_type : "ALLY"
+                    })
+                )
+            } else {
+                this.setState(
+                    state => ({
+                        account_type : "PERSON_IN_NEED"
+                    })
+                )
+            }
+        }
+
+        console.log(this.state.account_type)
+        
     }
 
     handleSubmit(e) {
-        console.log("Submitted");
-        e.preventDefault();
-    }
-    
-    toggleHome() {
+        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/register";
+        
         this.setState(
             state => ({
-                home: true
+                confirm : undefined
             })
-        );
+        )
+
+
+        console.log(this.state);
+        fetch(
+            server, {
+                method: "POST",
+                headers: {},
+                body: JSON.stringify(this.state)
+            }
+        ).then(res => console.log(res)).then(
+            (result) => {
+                console.log(result);
+            },
+            (error) => {
+                console.log("FAILED");
+                console.log(error);
+            }
+        )
+
     }
+    
 
     render() {
         if(this.state.home){
@@ -68,7 +104,7 @@ export default class Register extends Component {
         }
         return (
             <div className="register mb-5 container">
-                <a onClick={this.toggleHome}>
+                <a href="/" >
                     <img src="logo.png" className="mb-4" alt="" width="100%" />
                 </a>
                 <form
@@ -199,7 +235,7 @@ export default class Register extends Component {
                             id="gender"
                             onChange={this.handleChange}
                         >   
-                            <option value="" disabled selected>Gender</option>
+                            <option value="" disabled defaultValue>Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Non-binary">Non-binary</option>
@@ -234,6 +270,17 @@ export default class Register extends Component {
                         >
                         </input>
                     </div>
+                    <div
+                        className="form-group"
+                    >   
+                        <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="account_type"
+                        value={this.state.account_type}
+                        onChange={this.handleChange}
+                        /> Are you an ally of a user?  
+                    </div>
                     <button 
                         className="form-control btn-primary" 
                         disabled={!this.validateForm()}
@@ -241,6 +288,7 @@ export default class Register extends Component {
                         >
                             Register
                     </button>
+
                 </form>
             </div>
         );

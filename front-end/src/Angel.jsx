@@ -34,17 +34,9 @@ export default class AngelRegister extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.validateForm = this.validateForm.bind(this);
-        this.toggleHome = this.toggleHome.bind(this);
         
-        console.log(this);
     }
     
-    toggleHome() {
-        this.setState(
-            state => ({
-                home: true
-            }))
-    }
 
     validateForm() {
         return (
@@ -102,7 +94,7 @@ export default class AngelRegister extends Component {
         return (
             <div className="register mb-5 container">
                 <div className="container">
-                    <a onClick={this.toggleHome}>
+                    <a href="/">
                         <img src="logo.png" className="mb-4" alt="" width="100%" />
                     </a>
                     <form

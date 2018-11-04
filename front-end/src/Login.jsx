@@ -46,6 +46,7 @@ class Login extends Component {
             forgot : false,
             home: false,
             identifier : "",
+            email : "",
             password : ""
         };
         
@@ -57,7 +58,6 @@ class Login extends Component {
         this.validateForm = this.validateForm.bind(this);
         this.toggleCreate = this.toggleCreate.bind(this);
         this.toggleForgot = this.toggleForgot.bind(this);
-        this.toggleHome = this.toggleHome.bind(this);
     }
 
     // =====================================================================
@@ -66,7 +66,7 @@ class Login extends Component {
     // =====================================================================
     validateForm() {
         return (
-            this.state.identifier.length > 3 
+            this.state.email.length > 3 
             &&
             this.state.password.length > 8
         )
@@ -79,8 +79,41 @@ class Login extends Component {
     // request to the end point APIs for authorizaiton/authnetication
     // =====================================================================
     handleSubmit(e) {
-        console.log(this.state.password);
-        console.log(this.state.identifier);
+        console.log(this.state.password)
+        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login"
+
+        // let formBody = []
+
+        // let encodedKey = encodeURIComponent("email");
+        // let encodedValue = encodeURIComponent(this.state.email);
+        // formBody.push(encodedKey + "=" + encodedValue)
+
+        
+        // encodedKey = encodeURIComponent("password");
+        // encodedValue = encodeURIComponent(this.state.password);
+        // formBody.push(encodedKey + "=" + encodedValue)
+
+        // formBody = formBody.join("&");
+        fetch(
+            server, {
+                method: "POST",
+                headers: {},
+                body: {
+                    email : this.state.email,
+                    password : this.state.password
+                }
+            }
+        ).then(res => console.log(res)).then(
+            (result) => {
+                console.log(result);
+            },
+            (error) => {
+                console.log("FAILED");
+                console.log(error);
+            }
+        )
+
+
         e.preventDefault()
         // ajax call to http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/login
         // it will return a list with a login token and it needs to be saved for later
@@ -126,14 +159,6 @@ class Login extends Component {
         )
     }
     
-    toggleHome() {
-        this.setState(
-            state => ({
-                home: true
-            })
-        );
-    }
-    
 
     // =====================================================================
     // Renders the page
@@ -143,7 +168,7 @@ class Login extends Component {
         let forgot = null;
         let login = (
             <div className="container Login">
-                <a onClick={this.toggleHome}>
+                <a href="/">
                     <img className="mb-4" src="logo.png" width="100%" alt=""/>
                 </a>
                 <form 
@@ -155,9 +180,9 @@ class Login extends Component {
                         autoFocus
                         className="form-control"
                         type="text"
-                        id="identifier"
+                        id="email"
                         placeholder="Email or username"
-                        value={this.state.identifier}
+                        value={this.state.email}
                         onChange={this.handleChange}
                         >
                         </input>
