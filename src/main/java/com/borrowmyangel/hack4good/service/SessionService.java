@@ -74,12 +74,10 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
-    	return email;
-
 //    	if(!isAutenticated(email, pass)){
 //    		return "FAILED";
 //	    }
-/*	    List<User> users = (List)userRepo.findAll();
+	    List<User> users = (List)userRepo.findAll();
     	User user = new User();
 
 	    for(User u: users){
@@ -99,7 +97,7 @@ public class SessionService {
 
 	    loginRepo.save(login);
 
-        return token;*/
+        return token;
     }
 
 	/**
