@@ -74,9 +74,10 @@ public class SessionService {
 	 */
     public String login(String email, String pass) {
 
-//    	if(!isAutenticated(email, pass)){
-//    		return "FAILED";
-//	    }
+    	if(!isAutenticated(email, pass)){
+    		return "FAILED";
+	    }
+
 	    List<User> users = (List)userRepo.findAll();
     	User user = new User();
 
