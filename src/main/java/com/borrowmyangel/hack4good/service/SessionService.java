@@ -130,7 +130,7 @@ public class SessionService {
     	String token = "";
 
     	for (int i = 0; i < 128; i++){
-    		int rand = (int)round((Math.random() * ((126 - 34) + 1)) + 34);
+    		int rand = (int)round((Math.random() * ((115 - 43) + 1)) + 34);
 
 			token += Character.toString((char)rand);
 	    }
