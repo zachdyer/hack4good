@@ -2,11 +2,13 @@ package com.borrowmyangel.hack4good.controllers;
 
 import com.borrowmyangel.hack4good.domain.Login;
 import com.borrowmyangel.hack4good.domain.User;
+import com.borrowmyangel.hack4good.dto.LoginUpload;
 import com.borrowmyangel.hack4good.service.SessionService;
 import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,8 +65,8 @@ public class SessionController {
 	 */
     @RequestMapping(value="/login", method = RequestMethod.POST)
     @ResponseBody
-    public ArrayList<String> login(HttpServletRequest request) {
-        String token = sessionService.login(request.getParameter("email"), request.getParameter("password"));
+    public ArrayList<String> login(LoginUpload login) {
+        String token = sessionService.login(login.getEmail(), login.getPassword());
         return new ArrayList<String>() {{ add("Successful"); add(token); }};
     }
 
