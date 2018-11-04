@@ -17,7 +17,7 @@ export default class Register extends Component {
             username: "",
             email: "",
             password_hash: "",
-            confirm: "",
+            confirm_password: "",
             fname: "",
             nickname: "",
             age: -1,

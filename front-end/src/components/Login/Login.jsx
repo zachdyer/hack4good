@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Home from "./../../App.jsx"; 
 import "./Login.css";
 import CreateAccount from "./../CreateAccount/CreateAccount";
+import Hub from "./../Hub/Hub";
 
 // =====================================================================
 // The Login component for rendering the login page.
@@ -104,7 +105,20 @@ class Login extends Component {
             }
         ).then(res => res.json()).then(
             (result) => {
-                console.log(decodeURIComponent(result[1]));
+                if (decodeURIComponent(result[1]) === "FAILURE") {
+                    console.log("Failed to authenticate");
+                    this.setState(
+                        state => ({
+                            authorized : false
+                        })
+                    )
+                } else {
+                    this.setState(
+                        state => ({
+                            authorized : true
+                        })
+                    )
+                }
             },
             (error) => {
                 console.log("FAILED");
@@ -161,6 +175,9 @@ class Login extends Component {
     // Renders the page
     // =====================================================================
     render() {
+        if (this.state.authorized) {
+            return <Hub />;
+        }
         let create = <CreateAccount />;
         let forgot = null;
         let login = (

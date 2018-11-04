@@ -19,8 +19,8 @@ export default class AngelRegister extends Component {
         this.state = {
             username: "",
             email: "",
-            password: "",
-            confirm: "",
+            password_hash: "",
+            confirm_password: "",
             fname: "",
             lname: "",
             aliases: "None",
@@ -58,9 +58,9 @@ export default class AngelRegister extends Component {
             &&
             this.state.email !== ""
             &&
-            this.state.password.length > 8
+            this.state.password_hash.length > 8
             &&
-            this.state.confirm === this.state.password
+            this.state.confirm_password=== this.state.password_hash
             &&
             this.state.age >= 18
             && 
@@ -103,7 +103,42 @@ export default class AngelRegister extends Component {
     // TODO: create post AJAX call to the backend.
     // =====================================================================
     handleSubmit(e) {
-        console.log("Submitted");
+        this.setState(
+            state => ({
+                confirm_password : undefined
+            })
+        )
+        
+        let server = "http://ec2-18-216-155-150.us-east-2.compute.amazonaws.com:8080/registerUserWithApplication";
+         
+        let formBody = [];
+
+        for (let key in this.state) {
+            let componentKey = encodeURIComponent(key);
+            let componentValue = encodeURIComponent(this.state[key]);
+
+            formBody.push(componentKey + "=" + componentValue);
+        }
+
+        formBody = formBody.join("&");
+        fetch(
+            server, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                },
+                body: formBody
+            }
+        ).then(res => res.json()).then(
+            (result) => {
+                console.log(decodeURIComponent(result[1]));
+            },
+            (error) => {
+                console.log("FAILED");
+                console.log(error);
+            }
+        )
+
         this.setState(
             state => ({
                 redirect : true
@@ -165,10 +200,10 @@ export default class AngelRegister extends Component {
                             <input
                                 className="form-control"
                                 type="password"
-                                id="password"
+                                id="password_hash"
                                 placeholder="Password"
                                 minLength="8"
-                                value={this.state.password}
+                                value={this.state.password_hash}
                                 onChange={this.handleChange}
                                 data-toggle="popover"
                                 data-placement="right"
@@ -184,7 +219,7 @@ export default class AngelRegister extends Component {
                             <input
                                 className="form-control"
                                 type="password"
-                                id="confirm"
+                                id="confirm_password"
                                 placeholder="Confirm Password"
                                 value={this.state.confirm_password}
                                 onChange={this.handleChange}
